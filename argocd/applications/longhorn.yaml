@@ -11,6 +11,11 @@ spec:
     repoURL: https://charts.longhorn.io
     chart: longhorn
     targetRevision: v1.8.1
+    helm:
+      values: |
+        # setting for microk8s kubelet dir
+        csi:
+          kubeletRootDir: /var/snap/microk8s/common/var/lib/kubelet
   destination:
     server: https://kubernetes.default.svc
     namespace: longhorn-system
