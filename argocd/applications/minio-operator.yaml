@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://operator.min.io
-    chart: minio-operator
+    chart: operator
     targetRevision: 7.0.1
   destination:
     server: https://kubernetes.default.svc
