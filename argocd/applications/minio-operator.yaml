@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio-operator
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"  # need to deploy after longhorn
+spec:
+  project: default
+  source:
+    repoURL: https://operator.min.io
+    chart: minio-operator
+    targetRevision: 7.0.1
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio-operator
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+
