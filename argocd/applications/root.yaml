@@ -1,3 +1,4 @@
+# only this file needs to apply manually
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
