@@ -1,0 +1,35 @@
+# https://min.io/docs/minio/kubernetes/upstream/operations/install-deploy-manage/deploy-minio-tenant-helm.html#deploy-tenant-helm
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: minio-tenant-test
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"  # need to deploy after longhorn
+spec:
+  project: default
+  source:
+    repoURL: https://operator.min.io
+    chart: tenant
+    targetRevision: 7.0.1
+    helm:
+      values: |
+        tenant:
+          name: test-tenant
+          pools:
+           - servers: 1
+             name: pool-0
+             volumesPerServer: 1
+             size: 100Gi
+             storageClassName: longhorn
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: minio-tenant-test
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
+
+
