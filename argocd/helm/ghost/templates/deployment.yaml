@@ -55,7 +55,7 @@ spec:
                   name: mail-secrets
                   key: smtp-password
             - name: mail__from
-              value: {{ .Values.mail.from }}
+              value: {{ .Values.mail.from | quote }}
             - name: database__connection__host
               value: ghost-mysql.ghost.svc.cluster.local
             - name: database__connection__port
