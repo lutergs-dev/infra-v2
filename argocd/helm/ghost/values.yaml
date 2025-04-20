@@ -9,6 +9,9 @@ url:
   default: "https://blog.lutergs.dev"
   admin: "https://blog-admin.lutergs.dev"
 
+mail:
+  from: "'LuterGS' <lutergs@lutergs.dev>"
+
 image:
   repository: ghost
   pullPolicy: IfNotPresent
