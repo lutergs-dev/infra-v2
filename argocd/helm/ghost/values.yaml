@@ -5,7 +5,7 @@
 
 replicaCount: 1
 
-url: "https://ghost.lutergs.dev"
+url: "https://blog.lutergs.dev"
 
 image:
   repository: ghost
