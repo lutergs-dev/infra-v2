@@ -14,6 +14,7 @@ spec:
     - ente-cast.lutergs.dev
     - ente-albums.lutergs.dev
     - blog.lutergs.dev
+    - blog-admin.lutergs.dev
   issuerRef:
     name: cloudflare-issuer
     kind: ClusterIssuer

@@ -1,38 +1,38 @@
-#apiVersion: argoproj.io/v1alpha1
-#kind: Application
-#metadata:
-#  name: ghost-mysql
-#  namespace: argocd
-#  annotations:
-#    argocd.argoproj.io/sync-wave: "1"
-#spec:
-#  project: default
-#  source:
-#    repoURL: registry-1.docker.io/bitnamicharts
-#    chart: mysql
-#    targetRevision: 12.3.4
-#    helm:
-#      values: |
-#        global:
-#          defaultStorageClass: longhorn
-#
-#        auth:
-#          existingSecret: mysql-secrets
-#          username: ghost
-#          database: ghost_db
-#
-#        primary:
-#          persistence:
-#            enabled: true
-#            size: 30Gi
-#            storageClass: longhorn
-#
-#  destination:
-#    server: https://kubernetes.default.svc
-#    namespace: ghost
-#  syncPolicy:
-#    syncOptions:
-#      - CreateNamespace=true
-#    automated:
-#      prune: true
-#      selfHeal: true
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ghost-mysql
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: registry-1.docker.io/bitnamicharts
+    chart: mysql
+    targetRevision: 12.3.4
+    helm:
+      values: |
+        global:
+          defaultStorageClass: longhorn
+
+        auth:
+          existingSecret: mysql-secrets
+          username: ghost
+          database: ghost_db
+
+        primary:
+          persistence:
+            enabled: true
+            size: 30Gi
+            storageClass: longhorn
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ghost
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true

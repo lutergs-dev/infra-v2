@@ -20,6 +20,18 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: ghost-blog-admin-listener
+      hostname: "blog-admin.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
     - name: ente-museum-listener
       hostname: "ente.lutergs.dev"
       port: 443
