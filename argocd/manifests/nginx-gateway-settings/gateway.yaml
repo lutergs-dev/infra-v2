@@ -1,3 +1,5 @@
+# need to set external IP manually in service to work
+
 apiVersion: gateway.networking.k8s.io/v1
 kind: Gateway
 metadata:
@@ -5,10 +7,19 @@ metadata:
   namespace: nginx-gateway
 spec:
   gatewayClassName: nginx
-#  addresses:
-#    - type: IPAddress
-#      value: 10.0.0.95    # VM 의 subnet IP 로 해야함 (oracle 기준)
   listeners:
+    - name: ghost-blog-listener
+      hostname: "blog.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
     - name: ente-museum-listener
       hostname: "ente.lutergs.dev"
       port: 443

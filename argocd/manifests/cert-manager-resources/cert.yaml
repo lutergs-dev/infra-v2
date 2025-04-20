@@ -13,6 +13,7 @@ spec:
     - ente-auth.lutergs.dev
     - ente-cast.lutergs.dev
     - ente-albums.lutergs.dev
+    - blog.lutergs.dev
   issuerRef:
     name: cloudflare-issuer
     kind: ClusterIssuer
