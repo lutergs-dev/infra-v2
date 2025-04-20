@@ -17,7 +17,7 @@ spec:
           defaultStorageClass: longhorn
       
         auth:
-          existingSecret: mysql-secret
+          existingSecret: mysql-secrets
           username: ghost
           database: ghost_db
 
