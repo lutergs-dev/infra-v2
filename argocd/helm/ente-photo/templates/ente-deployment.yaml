@@ -24,6 +24,7 @@ spec:
       serviceAccountName: {{ include "ente-photo.serviceAccountName" . }}
       volumes:
         - name: shared-config-volume
+          emptyDir: {}
       initContainers:
         - name: init-config
           image: busybox
