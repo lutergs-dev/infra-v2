@@ -5,9 +5,9 @@ metadata:
   namespace: nginx-gateway
 spec:
   gatewayClassName: nginx
-  addresses:
-    - type: IPAddress
-      value: 10.0.0.95    # VM 의 subnet IP 로 해야함 (oracle 기준)
+#  addresses:
+#    - type: IPAddress
+#      value: 10.0.0.95    # VM 의 subnet IP 로 해야함 (oracle 기준)
   listeners:
     - name: ente-museum-listener
       hostname: "ente.lutergs.dev"
