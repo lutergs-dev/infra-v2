@@ -5,7 +5,9 @@
 
 replicaCount: 1
 
-url: "https://blog.lutergs.dev"
+url:
+  default: "https://blog.lutergs.dev"
+  admin: "https://blog-admin.lutergs.dev"
 
 image:
   repository: ghost
