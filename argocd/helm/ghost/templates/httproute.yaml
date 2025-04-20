@@ -6,7 +6,7 @@ spec:
   parentRefs:
     - name: gateway
       namespace: nginx-gateway
-      sectionName: blog.lutergs.dev
+      sectionName: ghost-blog-listener
   hostnames:
     - blog.lutergs.dev
   rules:
