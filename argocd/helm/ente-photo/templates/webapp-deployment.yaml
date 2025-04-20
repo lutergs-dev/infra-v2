@@ -14,6 +14,8 @@ spec:
       labels:
         app: {{ include "ente-photo.fullname" . }}-webapp
     spec:
+      nodeSelector:
+        kubernetes.io/arch: arm64
       containers:
         - name: ente-webapp
           image: koo04034/ente-webapp-all:0.3 # version from 2025.01.04
