@@ -16,10 +16,6 @@ image:
   pullPolicy: IfNotPresent
   tag: "f4875653987a6c83fb51a4a4ec252c8ff82b6c7d"   # 2025.03.15 version
 
-postgresql:
-  size: 15Gi
-  storageClass: longhorn
-
 serviceAccount:
   create: true
   automount: true

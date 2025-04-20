@@ -14,7 +14,7 @@ spec:
     helm:
       values: |
         global:
-          defaultStorageClass: {{ .Values.postgresql.storageClass }}
+          defaultStorageClass: longhorn
           postgresql:
             auth:
               existingSecret: postgresql-secret
@@ -22,12 +22,12 @@ spec:
         primary:
           persistence:
             enabled: true
-            size: {{ .Values.postgresql.size }}
-            storageClass: {{ .Values.postgresql.storageClass }}
+            size: 30Gi
+            storageClass: longhorn
 
   destination:
     server: https://kubernetes.default.svc
-    namespace: {{ .Release.Namespace }}
+    namespace: ente
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
