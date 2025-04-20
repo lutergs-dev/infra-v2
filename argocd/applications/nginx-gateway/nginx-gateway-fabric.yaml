@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: nginx
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "0"
+spec:
+  project: default
+  source:
+    repoURL: ghcr.io/nginx/charts
+    chart: nginx-gateway-fabric
+    targetRevision: 1.6.2
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: nginx-gateway
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
