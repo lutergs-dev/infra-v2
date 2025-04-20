@@ -25,7 +25,7 @@ spec:
       namespace: nginx-gateway
       sectionName: ghost-blog-admin-listener
   hostnames:
-    - blog.lutergs.dev
+    - blog-admin.lutergs.dev
   rules:
     - backendRefs:
         - name: {{ include "ghost.fullname" . }}-admin-service
