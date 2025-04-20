@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      namespace: istio-ingress
+      namespace: nginx-gateway
       sectionName: ente-museum-listener
   hostnames:
     - ente.lutergs.dev

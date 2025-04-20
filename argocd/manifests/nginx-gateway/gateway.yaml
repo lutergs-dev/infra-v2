@@ -1,0 +1,83 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: Gateway
+metadata:
+  name: gateway
+  namespace: nginx-gateway
+spec:
+  gatewayClassName: nginx
+  addresses:
+    - type: IPAddress
+      value: 10.0.0.95    # VM 의 subnet IP 로 해야함 (oracle 기준)
+  listeners:
+    - name: ente-museum-listener
+      hostname: "ente.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: ente-webapp-photos-listener
+      hostname: "photo.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: ente-webapp-accounts-listener
+      hostname: "ente-accounts.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: ente-webapp-auth-listener
+      hostname: "ente-auth.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: ente-webapp-cast-listener
+      hostname: "ente-cast.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: ente-webapp-albums-listener
+      hostname: "ente-albums.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All

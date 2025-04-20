@@ -5,7 +5,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      namespace: istio-ingress
+      namespace: nginx-gateway
       sectionName: ente-webapp-photos-listener
   hostnames:
     - photo.lutergs.dev
@@ -22,7 +22,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      namespace: istio-ingress
+      namespace: nginx-gateway
       sectionName: ente-webapp-accounts-listener
   hostnames:
     - ente-accounts.lutergs.dev
@@ -39,7 +39,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      namespace: istio-ingress
+      namespace: nginx-gateway
       sectionName: ente-webapp-auth-listener
   hostnames:
     - ente-auth.lutergs.dev
@@ -56,7 +56,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      namespace: istio-ingress
+      namespace: nginx-gateway
       sectionName: ente-webapp-cast-listener
   hostnames:
     - ente-cast.lutergs.dev
@@ -73,7 +73,7 @@ metadata:
 spec:
   parentRefs:
     - name: gateway
-      namespace: istio-ingress
+      namespace: nginx-gateway
       sectionName: ente-webapp-albums-listener
   hostnames:
     - ente-albums.lutergs.dev
