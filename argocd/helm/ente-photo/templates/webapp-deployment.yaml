@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp
+  labels:
+    app: {{ include "ente-photo.fullname" . }}-webapp
+spec:
+  replicas: {{ .Values.webapp.replicaCount }}
+  selector:
+    matchLabels:
+      app: {{ include "ente-photo.fullname" . }}-webapp
+  template:
+    metadata:
+      labels:
+        app: {{ include "ente-photo.fullname" . }}-webapp
+    spec:
+      containers:
+        - name: ente-webapp
+          image: koo04034/ente-webapp-all:0.3 # version from 2025.01.04
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+            - containerPort: 3001
+            - containerPort: 3002
+            - containerPort: 3003
+            - containerPort: 3004

@@ -31,6 +31,9 @@ resources:
     cpu: 0.4
     memory: 1000Mi
 
+webapp:
+  replicaCount: 1
+
 nodeSelector: {}
 
 tolerations: []

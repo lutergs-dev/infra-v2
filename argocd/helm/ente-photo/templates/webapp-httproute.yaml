@@ -1,0 +1,83 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-photos-http-route
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: istio-ingress
+      sectionName: ente-webapp-photos-listener
+  hostnames:
+    - photo.lutergs.dev
+  rules:
+    - backendRefs:
+        - name: {{ include "ente-photo.fullname" . }}-webapp-photos-service
+          port: 3000
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-accounts-http-route
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: istio-ingress
+      sectionName: ente-webapp-accounts-listener
+  hostnames:
+    - ente-accounts.lutergs.dev
+  rules:
+    - backendRefs:
+        - name: {{ include "ente-photo.fullname" . }}-webapp-accounts-service
+          port: 3001
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-auth-http-route
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: istio-ingress
+      sectionName: ente-webapp-auth-listener
+  hostnames:
+    - ente-auth.lutergs.dev
+  rules:
+    - backendRefs:
+        - name: {{ include "ente-photo.fullname" . }}-webapp-auth-service
+          port: 3002
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-cast-http-route
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: istio-ingress
+      sectionName: ente-webapp-cast-listener
+  hostnames:
+    - ente-cast.lutergs.dev
+  rules:
+    - backendRefs:
+        - name: {{ include "ente-photo.fullname" . }}-webapp-cast-service
+          port: 3003
+
+---
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-albums-http-route
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: istio-ingress
+      sectionName: ente-webapp-albums-listener
+  hostnames:
+    - ente-albums.lutergs.dev
+  rules:
+    - backendRefs:
+        - name: {{ include "ente-photo.fullname" . }}-webapp-albums-service
+          port: 3004

@@ -1,0 +1,73 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-photos-service
+spec:
+  selector:
+    app: {{ include "ente-photo.fullname" . }}-webapp
+  ports:
+    - name: api
+      protocol: TCP
+      port: 3000
+      targetPort: 3000
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-accounts-service
+spec:
+  selector:
+    app: {{ include "ente-photo.fullname" . }}-webapp
+  ports:
+    - name: api
+      protocol: TCP
+      port: 3001
+      targetPort: 3001
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-auth-service
+spec:
+  selector:
+    app: {{ include "ente-photo.fullname" . }}-webapp
+  ports:
+    - name: api
+      protocol: TCP
+      port: 3002
+      targetPort: 3002
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-cast-service
+spec:
+  selector:
+    app: {{ include "ente-photo.fullname" . }}-webapp
+  ports:
+    - name: api
+      protocol: TCP
+      port: 3003
+      targetPort: 3003
+  type: ClusterIP
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-webapp-albums-service
+spec:
+  selector:
+    app: {{ include "ente-photo.fullname" . }}-webapp
+  ports:
+    - name: api
+      protocol: TCP
+      port: 3004
+      targetPort: 3004
+  type: ClusterIP

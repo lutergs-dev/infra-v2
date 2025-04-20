@@ -1,0 +1,15 @@
+apiVersion: gateway.networking.k8s.io/v1
+kind: HTTPRoute
+metadata:
+  name: {{ include "ente-photo.fullname" . }}-http-route
+spec:
+  parentRefs:
+    - name: gateway
+      namespace: istio-ingress
+      sectionName: ente-museum-listener
+  hostnames:
+    - ente.lutergs.dev
+  rules:
+    - backendRefs:
+        - name: {{ include "ente-photo.fullname" . }}-service
+          port: 8080
