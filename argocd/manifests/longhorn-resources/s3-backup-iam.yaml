@@ -1,0 +1,17 @@
+---
+apiVersion: bitnami.com/v1alpha1
+kind: SealedSecret
+metadata:
+  creationTimestamp: null
+  name: s3-backup-iam-credentials
+  namespace: longhorn-system
+spec:
+  encryptedData:
+    AWS_ACCESS_KEY_ID: AgBnJ0zpeQOQ+oGhQkhXqaEFoFx7YfL+StxSqPgJ1kqJ8fgV1zCO+JUWRK9j4lxoXuvn4L/FlWvrYDL8zXRac9BM0bVuFGB98NwEcZGUgBWBucvpCzbld/tiiGejt7pbIPj4o7tLWbqzn0NSt0mHj6SttDYNd1cBs5oX463H2kb6V9unEcp/twYfuNo+8aOzd9TtDAXd/wP/aUKGXbZss+c7siJ0g27IyEYdzgU9gjcqTt5j/KK4VlZgufCezTsNluRA9jT2nWMoo0qSb6TDqseva8kRbGM+qfJtxaYkt7zM0/WSpcK6u7aR6cCETjPdMwi3+AyzVcjE9mxyJVW5oBG8eGTWe55x8e9I5VNVwfL0r2Xsnj231zJnUZjX0U1EjfnQJ9gjbvX3R9RQBIkV5N0b5ubfdemVnqxwD3Ksv867qZQEPQ0XiagoE+BJ++IahMrLkTVtGI2wcrT++hAqINms+Ngtj0XucZLdt8U1X4d3JKK8IWbiGlA1JYGNh3eNi1n9OYC/d44mQnHxfv9e6nq9pYT8lzIFaxNZmWVTc+r74tEtPSfNj5iWTAeam7/5dNEEitcSJ/EYRIbnC8gKzwt+psr5c23Lkl9leynftP8GY6xTmeRdnvLp5GLcswiAE0BcL18pkTnUjD7pYX+Wasa9OE5dvFcCvXT0+Bp3ZzU1KGK17FWLxbQ4eFwXFzJp5/fE+r/w3+mWM24TI+CkulC13Asm6g==
+    AWS_SECRET_ACCESS_KEY: AgBWv9NFR3trOj/zXJoqI31ZBhXxc9yNzao0mtPk9lWj/LAOkmM1zXWmeC+hoCsDdH16+u3wsHSjEnE/B0kC+aqq2vf7w5WKQJwzPl1ofoDr9juhRLNaC0mpN7Ajc/S0pEZdmiqc8flrmENgpyVDTossOdonMp0T5lPH+06ZoOtKmHmPXEx60LhSGV8hEvTYwylTQpw6JMg4NU2PudtYfnJGepFj8bLixAm/eD1oMnHHOPbxQYopx48+kPoBDu4xJkm0RdVHct4ddPeud05W3xIuVOxlRvgj120J9WrdodVvMR96dDiNw0hKrCm3QOw9pRT9NvvlnH15THB/4Vqej6WN036eugJ3vpjwkVSYgJGAx+hMvZYQNXZrPEGnjM/8HnMK6MKjZu4cC8ot/r/koVgry8ioQf50WDoL9klmxTIv9PyUtwKR50CFetnFIUXhIp2zmqTAmDaHIhYuaLQi1Dvj6qf8TOfLhFrbfwb09e6bXanw9MRuPuQtWUhd6z/TJpasIrGI+KSEzpRe8PxjV0jY/Lj5Ji7Yk+Y7QsQDPvtcESnubuywi5BL6UK693caA1JTnnyJK8yYX/yIp3yg++U5G/yn1tEh6c5SXOulqCMkR0A6p1jBT+tk2D01HlULQBB4RoatgHDT47OZDP+Hhf8I3xDpmhUKcy/mE4Gddk5e0OCzH+ddUnl7zLkKGxeg1JmahH4fgF3Z4VCpMWbvRTlP6NaBdP2D6DPG6uDMKMnmnMhJxSVs13QV
+  template:
+    metadata:
+      creationTimestamp: null
+      name: s3-backup-iam-credentials
+      namespace: longhorn-system
+    type: Opaque
