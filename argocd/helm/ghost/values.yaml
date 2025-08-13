@@ -15,7 +15,7 @@ mail:
 image:
   repository: ghost
   pullPolicy: IfNotPresent
-  tag: "5.117.0"   # 2025.04.20 version
+  tag: "6.0.2"   # 2025.08.13 version
 
 serviceAccount:
   create: true
