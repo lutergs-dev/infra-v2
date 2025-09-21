@@ -20,6 +20,7 @@ spec:
   syncPolicy:
     syncOptions:
       - CreateNamespace=true
+      - ServerSideApply=true  # this is for Pooler CRD. pooler CRD is too large so need to apply from server side
     automated:
       prune: true
       selfHeal: true
