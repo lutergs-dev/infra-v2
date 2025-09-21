@@ -1,7 +1,7 @@
 apiVersion: cert-manager.io/v1
 kind: Certificate
 metadata:
-  name: lutergs-https-cert
+  name: lutergs-authentik-https-cert
   namespace: nginx-gateway
 spec:
   secretName: lutergs-authentik-https-tls
