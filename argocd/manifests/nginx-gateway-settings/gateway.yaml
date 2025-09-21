@@ -116,3 +116,27 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: argocd-listener
+      hostname: "argocd.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
+    - name: longhorn-listener
+      hostname: "longhorn.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All
