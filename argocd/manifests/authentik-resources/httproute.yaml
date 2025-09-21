@@ -13,4 +13,4 @@ spec:
   rules:
     - backendRefs:
         - name: authentik-server
-          port: 443
+          port: 80
