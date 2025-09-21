@@ -7,8 +7,6 @@ spec:
   instances: 1
 
   imageCatalogRef:
-    apiGroup: postgresql.cnpy.io
-    kind: ClusterImageCatalog
     major: 17
 
   bootstrap:
