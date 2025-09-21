@@ -10,7 +10,6 @@ spec:
       sectionName: authentik-listener
   hostnames:
     - authentik.lutergs.dev
-    - argocd.lutergs.dev
     - longhorn.lutergs.dev
   rules:
     - backendRefs:
