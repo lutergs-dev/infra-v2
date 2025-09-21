@@ -1,0 +1,23 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: authentik-postgresql
+  namespace: authentik
+spec:
+  instances: 1
+
+  imageCatalogRef:
+    apiGroup: postgresql.cnpy.io
+    kind: ClusterImageCatalog
+    major: 17
+
+  bootstrap:
+    initdb:
+      database: app
+      owner: app
+      secret:
+        name: pg-secret
+
+  storage:
+    size: 50Gi
+    storageClass: longhorn
