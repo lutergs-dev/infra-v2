@@ -11,6 +11,16 @@ spec:
   hostnames:
     - argocd.lutergs.dev
   rules:
-    - backendRefs:
+    - filters:
+        - type: RequestHeaderModifier
+          requestHeaderModifier:
+            add:
+              - name: X-Forwarded-Proto
+                value: https
+              - name: X-Forwarded-Host
+                value: argocd.lutergs.dev
+              - name: X-Forwarded-Port
+                value: "443"
+      backendRefs:
         - name: argocd-server
           port: 80
