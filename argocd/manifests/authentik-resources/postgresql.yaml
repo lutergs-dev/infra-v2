@@ -6,6 +6,9 @@ metadata:
 spec:
   instances: 1
 
+  backup:
+    volumeSnapshot:
+
   clusterImageCatalogRef:
     major: 17
 
