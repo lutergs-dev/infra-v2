@@ -104,3 +104,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: authentik-listener
+      hostname: "authentik.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All

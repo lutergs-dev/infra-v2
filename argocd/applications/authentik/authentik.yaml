@@ -14,6 +14,7 @@ spec:
     helm:
       values: |
         authentik:
+          secret_key: X1FyHgYNRHGMYK2DxbAwzSMJzSxDKu+cAFpX0zqaSBP8d0ry//ekjROsDq67xnifsHebVXSS4a+c/zQd
           postgresql:
             host: authentik-postgresql-rw.authentik.svc.cluster.local
         server:
