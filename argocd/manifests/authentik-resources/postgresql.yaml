@@ -7,7 +7,8 @@ spec:
   instances: 1
 
   backup:
-    volumeSnapshot:
+    target: primary     # always trigger backup on primary
+    retentionPolicy: 30d
 
   clusterImageCatalogRef:
     major: 17
