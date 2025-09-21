@@ -16,6 +16,8 @@ spec:
     - blog.lutergs.dev
     - blog-admin.lutergs.dev
     - authentik.lutergs.dev
+    - argocd.lutergs.dev
+    - longhorn.lutergs.dev
   issuerRef:
     name: cloudflare-issuer
     kind: ClusterIssuer
