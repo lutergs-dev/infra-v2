@@ -120,11 +120,11 @@ spec:
       hostname: "argocd.lutergs.dev"
       port: 443
       protocol: HTTPS
-#      tls:
-#        mode: Terminate
-#        certificateRefs:
-#          - kind: Secret
-#            name: lutergs-https-tls
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
       allowedRoutes:
         namespaces:
           from: All
