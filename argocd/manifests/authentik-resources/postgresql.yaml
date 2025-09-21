@@ -15,8 +15,8 @@ spec:
 
   bootstrap:
     initdb:
-      database: app
-      owner: app
+      database: authentik
+      owner: authentik
       secret:
         name: pg-secret
 
