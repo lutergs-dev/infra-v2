@@ -112,7 +112,7 @@ spec:
         mode: Terminate
         certificateRefs:
           - kind: Secret
-            name: lutergs-https-tls
+            name: lutergs-authentik-https-tls
       allowedRoutes:
         namespaces:
           from: All

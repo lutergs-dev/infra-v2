@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lutergs-https-cert
+  namespace: nginx-gateway
+spec:
+  secretName: lutergs-authentik-https-tls
+  dnsNames:
+    - authentik.lutergs.dev
+  issuerRef:
+    name: cloudflare-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

@@ -15,7 +15,6 @@ spec:
     - ente-albums.lutergs.dev
     - blog.lutergs.dev
     - blog-admin.lutergs.dev
-    - authentik.lutergs.dev
     - argocd.lutergs.dev
     - longhorn.lutergs.dev
   issuerRef:
