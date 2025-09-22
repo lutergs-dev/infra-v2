@@ -9,4 +9,4 @@ spec:
   backupOwnerReference: self
   cluster:
     name: authentik-postgresql
-    method: volumeSnapshot
+  method: volumeSnapshot
