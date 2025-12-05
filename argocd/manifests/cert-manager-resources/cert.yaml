@@ -7,12 +7,6 @@ spec:
   secretName: lutergs-https-tls
   dnsNames:
     - photo.lutergs.dev
-    - ente.lutergs.dev
-    - ente-photos.lutergs.dev
-    - ente-accounts.lutergs.dev
-    - ente-auth.lutergs.dev
-    - ente-cast.lutergs.dev
-    - ente-albums.lutergs.dev
     - blog.lutergs.dev
     - blog-admin.lutergs.dev
     - argocd.lutergs.dev
