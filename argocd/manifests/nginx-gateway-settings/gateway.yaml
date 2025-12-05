@@ -68,3 +68,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: home-assistant-proxy-listener
+      hostname: "home-assistant.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All

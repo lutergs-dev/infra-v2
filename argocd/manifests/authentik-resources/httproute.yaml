@@ -10,8 +10,8 @@ spec:
       sectionName: authentik-listener
   hostnames:
     - authentik.lutergs.dev
-#    - argocd.lutergs.dev
     - longhorn.lutergs.dev
+    - home-assistant.lutergs.dev
   rules:
     - backendRefs:
         - name: authentik-server
