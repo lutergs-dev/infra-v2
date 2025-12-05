@@ -18,6 +18,9 @@ service:
 serviceAccount:
   create: true
 
+autoscaling:
+  enabled: false
+
 resources:
    limits:
      memory: 50Mi
