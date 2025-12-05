@@ -15,6 +15,9 @@ image:
 service:
   port: 80
 
+serviceAccount:
+  create: true
+
 resources:
    limits:
      memory: 50Mi
