@@ -11,6 +11,7 @@ spec:
     - blog-admin.lutergs.dev
     - argocd.lutergs.dev
     - longhorn.lutergs.dev
+    - home-assistant.lutergs.dev
   issuerRef:
     name: cloudflare-issuer
     kind: ClusterIssuer
