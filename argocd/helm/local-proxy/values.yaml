@@ -1,0 +1,29 @@
+
+
+proxy:
+  target:
+    url:
+
+replicaCount: 1
+
+image:
+  repository: nginx
+  pullPolicy: IfNotPresent
+  tag: "stable"
+
+
+service:
+  port: 80
+
+resources:
+   limits:
+     memory: 50Mi
+   requests:
+     memory: 50Mi
+
+nodeSelector:
+  kubernetes.io/hostname:
+
+tolerations: []
+
+affinity: {}

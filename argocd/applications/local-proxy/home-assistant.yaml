@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: homeassistant-proxy
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/lutergs-dev/infra-v2
+    path: argocd/helm/local-proxy
+    targetRevision: HEAD
+    helm:
+      values: |
+        proxy:
+          target:
+            url: http://192.168.0.31:8123
+      
+        nodeSelector:
+          kubernetes.io/hostname: hivemind
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: ghost
+  syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
+    automated:
+      prune: true
+      selfHeal: true
