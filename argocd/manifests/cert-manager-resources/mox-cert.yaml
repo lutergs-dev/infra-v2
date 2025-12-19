@@ -4,9 +4,11 @@ metadata:
   name: lutergs-mox-https-cert
   namespace: nginx-gateway
 spec:
-  secretName: lutergs-authentik-https-tls
+  secretName: lutergs-mox-https-tls
   dnsNames:
-    - authentik.lutergs.dev
+    - mail.lutergs.dev
+    - mta-sts.lutergs.dev
+    - autoconfig.lutergs.dev
   issuerRef:
     name: cloudflare-issuer
     kind: ClusterIssuer
