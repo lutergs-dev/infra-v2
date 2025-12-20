@@ -28,7 +28,7 @@ resources:
      memory: 50Mi
 
 nodeSelector:
-  kubernetes.io/hostname:
+  kubernetes.io/hostname: hivemind
 
 tolerations: []
 
