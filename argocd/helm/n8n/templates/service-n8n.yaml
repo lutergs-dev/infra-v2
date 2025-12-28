@@ -14,3 +14,4 @@ spec:
       targetPort: 5678
   selector:
     {{- include "n8n.selectorLabels" . | nindent 4 }}
+    n8n.type: main
