@@ -16,10 +16,16 @@ autoscaling:
   enabled: false
 
 resources:
-   limits:
-     memory: 1000Mi
-   requests:
-     memory: 500Mi
+  main:
+    requests:
+      memory: 250Mi
+    limits:
+      memory: 300Mi
+  worker:
+    requests:
+      memory: 400Mi
+    limits:
+      memory: 400Mi
 
 tolerations: []
 

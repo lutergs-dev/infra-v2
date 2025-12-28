@@ -64,6 +64,8 @@ spec:
               value: http
             - name: N8N_PORT
               value: "5678"
+            - name: OFFLOAD_MANUAL_EXECUTIONS_TO_WORKERS
+              value: "true"
 
             # main - worker setting
             - name: N8N_ENCRYPTION_KEY
@@ -81,7 +83,7 @@ spec:
           ports:
             - containerPort: 5678
           resources:
-            {{- toYaml .Values.resources | nindent 12 }}
+            {{- toYaml .Values.resources.main | nindent 12 }}
           volumeMounts:
             - mountPath: /home/node/.n8n
               name: n8n-content
