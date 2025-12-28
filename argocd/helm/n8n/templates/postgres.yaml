@@ -1,0 +1,24 @@
+apiVersion: postgresql.cnpg.io/v1
+kind: Cluster
+metadata:
+  name: n8n-postgresql
+spec:
+  instances: 1
+
+  backup:
+    target: primary     # always trigger backup on primary
+    retentionPolicy: 30d
+
+  clusterImageCatalogRef:
+    major: 17
+
+  bootstrap:
+    initdb:
+      database: n8n
+      owner: n8n
+      secret:
+        name: pg-secret
+
+  storage:
+    size: 50Gi
+    storageClass: longhorn
