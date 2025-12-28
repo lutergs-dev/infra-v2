@@ -8,6 +8,9 @@ image:
 serviceAccount:
   create: true
 
+replica:
+  main: 1
+
 autoscaling:
   enabled: false
 

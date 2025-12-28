@@ -13,17 +13,17 @@ kubeseal --controller-name=sealed-secrets --controller-namespace=sealed-secrets 
 ```
 
 
-### Secrets in ghost-smtp-setting
+### Secrets in n8n-encryption-key
 
-maintain secret values needs to use in ghost Amazon SES mail setting.
+maintain secret values needs to use in n8n master - worker encryption key.
 
-copy-paste `mail-secrets-raw-example.yaml` to `mail-secrets-raw.yaml`, and fill out data by given instruction.
+copy-paste `encryption-key-raw-example.yaml` to `encryption-key-raw.yaml`, and fill out data by given instruction.
 
-!! please remind do not post original `mail-secrets-raw.yaml` to git.
+!! please remind do not post original `encryption-key-raw.yaml` to git.
 
 and create sealed-secret via execute this command.
 
 ```shell
-kubeseal --controller-name=sealed-secrets --controller-namespace=sealed-secrets -o yaml < mail-secrets-raw.yaml > mail-secrets.yaml
+kubeseal --controller-name=sealed-secrets --controller-namespace=sealed-secrets -o yaml < encryption-key-raw.yaml > encryption-key.yaml
 ```
 

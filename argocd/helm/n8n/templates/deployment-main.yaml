@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "n8n.labels" . | nindent 4 }}
 spec:
-  replicas: {{ .Values.replicaCount }}
+  replicas: {{ .Values.replica.main }}
   selector:
     matchLabels:
       {{- include "n8n.selectorLabels" . | nindent 6 }}
@@ -61,6 +61,18 @@ spec:
               value: http
             - name: N8N_PORT
               value: "5678"
+
+            # main - worker setting
+            - name: N8N_ENCRYPTION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: n8n-encryption-key
+                  key: key
+            - name: QUEUE_BULL_REDIS_HOST
+              value: redis.n8n.svc.cluster.local
+            - name: QUEUE_BULL_REDIS_PORT
+              value: "6379"
+
           ports:
             - containerPort: 5678
           resources:
