@@ -20,5 +20,5 @@ spec:
         name: pg-secret
 
   storage:
-    size: 50Gi
+    size: 100Gi
     storageClass: longhorn
