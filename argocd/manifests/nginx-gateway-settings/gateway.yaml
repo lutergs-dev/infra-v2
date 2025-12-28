@@ -80,3 +80,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: n8n-listener
+      hostname: "n8n.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-n8n-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All

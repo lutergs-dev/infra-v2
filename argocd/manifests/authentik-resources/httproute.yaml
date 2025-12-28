@@ -11,6 +11,7 @@ spec:
   hostnames:
     - authentik.lutergs.dev
     - longhorn.lutergs.dev
+    - n8n.lutergs.dev
   rules:
     - backendRefs:
         - name: authentik-server
