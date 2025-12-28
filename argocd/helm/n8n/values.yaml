@@ -10,6 +10,7 @@ serviceAccount:
 
 replica:
   main: 1
+  worker: 2
 
 autoscaling:
   enabled: false

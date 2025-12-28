@@ -1,22 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ include "n8n.fullname" . }}
+  name: {{ include "n8n.fullname" . }}-worker
   labels:
     {{- include "n8n.labels" . | nindent 4 }}
+    app.kubernetes.io/type: worker
 spec:
-  replicas: {{ .Values.replica.main }}
+  replicas: {{ .Values.replica.worker }}
   selector:
     matchLabels:
       {{- include "n8n.selectorLabels" . | nindent 6 }}
+      app.kubernetes.io/type: worker
   template:
     metadata:
-      {{- with .Values.podAnnotations }}
-      annotations:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
       labels:
         {{- include "n8n.labels" . | nindent 8 }}
+        app.kubernetes.io/type: worker
         {{- with .Values.podLabels }}
         {{- toYaml . | nindent 8 }}
         {{- end }}
