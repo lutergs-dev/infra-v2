@@ -75,6 +75,8 @@ spec:
               value: redis.n8n.svc.cluster.local
             - name: QUEUE_BULL_REDIS_PORT
               value: "6379"
+            - name: EXECUTIONS_MODE
+              value: "queue"
 
           ports:
             - containerPort: 5678
