@@ -16,6 +16,7 @@ spec:
       labels:
         app: redis
     spec:
+      serviceAccountName: {{ include "n8n.serviceAccountName" . }}
       terminationGracePeriodSeconds: 30
       containers:
         - name: redis
