@@ -1,0 +1,6 @@
+apiVersion: v2
+name: ai-trader
+description: AI-powered crypto trading bot with Streamlit dashboard
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

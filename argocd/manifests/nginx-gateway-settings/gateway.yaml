@@ -92,3 +92,15 @@ spec:
       allowedRoutes:
         namespaces:
           from: All
+    - name: ai-trader-listener
+      hostname: "trader.lutergs.dev"
+      port: 443
+      protocol: HTTPS
+      tls:
+        mode: Terminate
+        certificateRefs:
+          - kind: Secret
+            name: lutergs-ai-trader-https-tls
+      allowedRoutes:
+        namespaces:
+          from: All

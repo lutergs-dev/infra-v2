@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: lutergs-ai-trader-https-cert
+  namespace: nginx-gateway
+spec:
+  secretName: lutergs-ai-trader-https-tls
+  dnsNames:
+    - trader.lutergs.dev
+  issuerRef:
+    name: cloudflare-issuer
+    kind: ClusterIssuer
+    group: cert-manager.io

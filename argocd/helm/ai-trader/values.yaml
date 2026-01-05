@@ -1,0 +1,37 @@
+replicaCount: 1
+
+image:
+  repository: ghcr.io/lutergs/ai-trader
+  tag: latest
+  pullPolicy: Always
+
+imagePullSecrets:
+  - name: ghcr-secret
+
+externalSecret:
+  name: ai-trader-secrets
+
+service:
+  type: ClusterIP
+  port: 80
+
+persistence:
+  enabled: true
+  storageClass: longhorn
+  size: 30Gi
+
+resources:
+  requests:
+    memory: "1Gi"
+    cpu: "250m"
+  limits:
+    memory: "1.5Gi"
+    cpu: "500m"
+
+probes:
+  liveness:
+    initialDelaySeconds: 30
+    periodSeconds: 30
+  readiness:
+    initialDelaySeconds: 10
+    periodSeconds: 10
