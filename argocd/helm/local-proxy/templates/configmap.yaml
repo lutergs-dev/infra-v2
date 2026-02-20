@@ -17,30 +17,71 @@ data:
       listen [::]:80 default_server;
       server_name _;
 
+      # Authentik Forward Auth 엔드포인트
+      location /outpost.goauthentik.io {
+        proxy_pass https://authentik.lutergs.dev/outpost.goauthentik.io;
+
+        proxy_set_header Host $host;
+        proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
+        proxy_set_header X-Forwarded-Proto $forwarded_proto;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+
+        proxy_pass_request_body off;
+        proxy_set_header Content-Length "";
+
+        proxy_buffering off;
+      }
+
       location / {
+        # Authentik Forward Auth 검증
+        auth_request /outpost.goauthentik.io/auth/nginx;
+        auth_request_set $auth_cookie $upstream_http_set_cookie;
+        add_header Set-Cookie $auth_cookie;
+
+        # 인증 실패 시 Authentik 로그인으로 리다이렉트
+        error_page 401 = @goauthentik_proxy_signin;
+
+        # 인증 성공 시 사용자 정보 헤더 전달
+        auth_request_set $authentik_username $upstream_http_x_authentik_username;
+        auth_request_set $authentik_groups $upstream_http_x_authentik_groups;
+        auth_request_set $authentik_email $upstream_http_x_authentik_email;
+        auth_request_set $authentik_name $upstream_http_x_authentik_name;
+        auth_request_set $authentik_uid $upstream_http_x_authentik_uid;
+
+        proxy_set_header X-authentik-username $authentik_username;
+        proxy_set_header X-authentik-groups $authentik_groups;
+        proxy_set_header X-authentik-email $authentik_email;
+        proxy_set_header X-authentik-name $authentik_name;
+        proxy_set_header X-authentik-uid $authentik_uid;
+
         proxy_pass {{ .Values.proxy.target.url }};
 
         proxy_http_version 1.1;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        # Gateway에서 받은 프로토콜 사용, 없으면 https (외부 접근은 항상 HTTPS이므로)
         proxy_set_header X-Forwarded-Proto $forwarded_proto;
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Port $server_port;
 
-        # 쿠키 전달 설정 (OAuth2 세션 유지를 위해 필수)
+        # 쿠키 전달 설정
         proxy_set_header Cookie $http_cookie;
         proxy_pass_header Set-Cookie;
-
-        # 쿠키 도메인 변환 방지
         proxy_cookie_domain off;
         proxy_cookie_path / /;
 
         # WebSocket 업그레이드
-        proxy_set_header    Upgrade           $http_upgrade;
-        proxy_set_header    Connection        "upgrade";
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
 
-        proxy_buffering     off;
+        proxy_buffering off;
+      }
+
+      # 인증 실패 시 리다이렉트 핸들러
+      location @goauthentik_proxy_signin {
+        internal;
+        add_header Set-Cookie $auth_cookie;
+        return 302 /outpost.goauthentik.io/start?rd=$request_uri;
       }
     }
