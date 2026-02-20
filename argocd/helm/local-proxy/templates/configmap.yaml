@@ -17,73 +17,7 @@ data:
       listen [::]:80 default_server;
       server_name _;
 
-      # Internal auth endpoint - auth_request 전용 (외부 접근 차단)
-      location = /outpost.goauthentik.io/auth/nginx {
-        internal;
-        proxy_pass https://authentik.lutergs.dev/outpost.goauthentik.io/auth/nginx;
-
-        proxy_set_header Host $host;
-        proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
-        proxy_set_header X-Forwarded-Proto $forwarded_proto;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-        proxy_pass_request_body off;
-        proxy_set_header Content-Length "";
-
-        # Auth 요청 최적화
-        proxy_buffering off;
-        proxy_request_buffering off;
-        proxy_buffer_size 4k;
-        proxy_buffers 8 4k;
-        proxy_busy_buffers_size 8k;
-
-        proxy_http_version 1.1;
-        proxy_set_header Connection "";
-      }
-
-      # Public Authentik 엔드포인트 (로그인, 콜백 등)
-      location /outpost.goauthentik.io {
-        # 순환 참조 방지를 위해 명시적으로 auth_request 비활성화
-        auth_request off;
-
-        proxy_pass https://authentik.lutergs.dev/outpost.goauthentik.io;
-
-        proxy_set_header Host $host;
-        proxy_set_header X-Original-URL $scheme://$http_host$request_uri;
-        proxy_set_header X-Forwarded-Proto $forwarded_proto;
-        proxy_set_header X-Forwarded-Host $host;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-        proxy_buffering off;
-        proxy_http_version 1.1;
-      }
-
       location / {
-        # Authentik Forward Auth 검증
-        auth_request /outpost.goauthentik.io/auth/nginx;
-        auth_request_set $auth_cookie $upstream_http_set_cookie;
-        add_header Set-Cookie $auth_cookie;
-
-        # 인증 실패 시 Authentik 로그인으로 리다이렉트
-        error_page 401 403 = @goauthentik_proxy_signin;
-
-        # Authentik 서비스 장애 시 에러 페이지
-        error_page 500 502 503 504 = @goauthentik_proxy_error;
-
-        # 인증 성공 시 사용자 정보 헤더 전달
-        auth_request_set $authentik_username $upstream_http_x_authentik_username;
-        auth_request_set $authentik_groups $upstream_http_x_authentik_groups;
-        auth_request_set $authentik_email $upstream_http_x_authentik_email;
-        auth_request_set $authentik_name $upstream_http_x_authentik_name;
-        auth_request_set $authentik_uid $upstream_http_x_authentik_uid;
-
-        proxy_set_header X-authentik-username $authentik_username;
-        proxy_set_header X-authentik-groups $authentik_groups;
-        proxy_set_header X-authentik-email $authentik_email;
-        proxy_set_header X-authentik-name $authentik_name;
-        proxy_set_header X-authentik-uid $authentik_uid;
-
         proxy_pass {{ .Values.proxy.target.url }};
 
         proxy_http_version 1.1;
@@ -94,30 +28,14 @@ data:
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Port $server_port;
 
-        # 쿠키 전달 설정
+        # 쿠키 전달
         proxy_set_header Cookie $http_cookie;
         proxy_pass_header Set-Cookie;
-        proxy_cookie_domain off;
-        proxy_cookie_path / /;
 
-        # WebSocket 업그레이드
+        # WebSocket 지원
         proxy_set_header Upgrade $http_upgrade;
         proxy_set_header Connection "upgrade";
 
         proxy_buffering off;
-      }
-
-      # 인증 실패 시 리다이렉트 핸들러
-      location @goauthentik_proxy_signin {
-        internal;
-        add_header Set-Cookie $auth_cookie;
-        return 302 /outpost.goauthentik.io/start?rd=$request_uri;
-      }
-
-      # Authentik 서비스 장애 시 에러 핸들러
-      location @goauthentik_proxy_error {
-        internal;
-        default_type text/html;
-        return 503 '<!DOCTYPE html><html><head><title>Service Unavailable</title></head><body><h1>Authentication service temporarily unavailable</h1><p>Please try again in a few moments.</p></body></html>';
       }
     }
