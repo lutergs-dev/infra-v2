@@ -6,6 +6,12 @@ metadata:
     {{- include "local-proxy.labels" . | nindent 4 }}
 data:
   default.conf: |
+    # Upstream에서 받은 X-Forwarded-Proto가 없으면 https로 fallback
+    map $http_x_forwarded_proto $forwarded_proto {
+      default $http_x_forwarded_proto;
+      ''      https;
+    }
+
     server {
       listen 80 default_server;
       listen [::]:80 default_server;
@@ -18,8 +24,14 @@ data:
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        # Gateway에서 전달된 프로토콜 유지 (없으면 현재 scheme 사용)
-        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
+        # Gateway에서 받은 프로토콜 사용, 없으면 https (외부 접근은 항상 HTTPS이므로)
+        proxy_set_header X-Forwarded-Proto $forwarded_proto;
+        proxy_set_header X-Forwarded-Host $host;
+        proxy_set_header X-Forwarded-Port $server_port;
+
+        # 디버깅용 헤더 (문제 해결 후 제거 가능)
+        add_header X-Debug-Received-Proto "$http_x_forwarded_proto" always;
+        add_header X-Debug-Forwarded-Proto "$forwarded_proto" always;
 
         # WebSocket 업그레이드
         proxy_set_header    Upgrade           $http_upgrade;
