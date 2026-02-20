@@ -29,14 +29,6 @@ data:
         proxy_set_header X-Forwarded-Host $host;
         proxy_set_header X-Forwarded-Port $server_port;
 
-        # 쿠키 전달 설정 (OAuth2 세션 유지를 위해 필수)
-        proxy_set_header Cookie $http_cookie;
-        proxy_pass_header Set-Cookie;
-
-        # 쿠키 도메인 변환 방지
-        proxy_cookie_domain off;
-        proxy_cookie_path / /;
-
         # WebSocket 업그레이드
         proxy_set_header    Upgrade           $http_upgrade;
         proxy_set_header    Connection        "upgrade";
