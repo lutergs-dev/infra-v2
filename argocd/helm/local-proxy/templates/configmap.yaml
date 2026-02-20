@@ -18,7 +18,8 @@ data:
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-Forwarded-Proto $scheme;
+        # Gateway에서 전달된 프로토콜 유지 (없으면 현재 scheme 사용)
+        proxy_set_header X-Forwarded-Proto $http_x_forwarded_proto;
 
         # WebSocket 업그레이드
         proxy_set_header    Upgrade           $http_upgrade;
