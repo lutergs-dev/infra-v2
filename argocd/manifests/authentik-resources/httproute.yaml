@@ -13,6 +13,7 @@ spec:
     - longhorn.lutergs.dev
     - n8n.lutergs.dev
     - trader.lutergs.dev
+    - home-assistant.lutergs.dev
   rules:
     - backendRefs:
         - name: authentik-server
